@@ -27,6 +27,7 @@ app.use(
 );
 app.use(express.json());
 app.use( cors({ origin: CLIENT_ORIGIN }));
+app.options('*', cors());
 
 app.use('/api/users', usersRouter);
 app.use('/api/login', passportRouter);
