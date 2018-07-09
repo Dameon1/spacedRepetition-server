@@ -4,38 +4,33 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const { router: userRouter } = require('./users/router');
+const passport = require('passport');
+
+const { router: userRouter } = require('./users/route');
+
+const {router: usersRouter} = require('./auth/users');
+const {router: passportRouter} = require('./auth/passport');
+const jwtStrategy = require('./auth/jwtStrategy');
+
+
+
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const app = express();
+
+passport.use(jwtStrategy);
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
     skip: (req, res) => process.env.NODE_ENV === 'test'
   })
 );
+app.use(express.json());
+app.use( cors({ origin: CLIENT_ORIGIN }));
 
-app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
-);
-
-app.use('/', userRouter);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use('/api/users', usersRouter);
+app.use('/api/login', passportRouter);
+app.use('/api/user', userRouter);
 
 function runServer(port = PORT) {
   const server = app
@@ -57,13 +52,6 @@ if (require.main === module) {
       console.log(`Server runing on ${PORT}`);
     });
 }
-
-
-
-
-
-
-
 
 
 module.exports = { app };
