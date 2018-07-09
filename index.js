@@ -7,10 +7,6 @@ const morgan = require('morgan');
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-
-const mongoose = require('mongoose');
-const passport = require('passport');
-
 const app = express();
 
 app.use(
@@ -37,8 +33,21 @@ function runServer(port = PORT) {
 }
 
 if (require.main === module) {
-  dbConnect();
-  runServer();
+  dbConnect()
+    .then(instance => {
+      const conn = instance.connections[0];
+      console.info(`Connected to: mongodb://${conn.host}:${conn.port}/${conn.name}`);
+      runServer();
+      console.log(`Server runing on ${PORT}`);
+    });
 }
+
+
+
+
+
+
+
+
 
 module.exports = { app };
