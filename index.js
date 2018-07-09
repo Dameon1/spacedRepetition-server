@@ -30,7 +30,7 @@ app.use( cors({ origin: CLIENT_ORIGIN }));
 app.options('*', cors());
 
 app.use('/api/users', usersRouter);
-app.use('/api/login', passportRouter);
+app.use('/api/auth', passportRouter);
 app.use('/api/user', userRouter);
 
 function runServer(port = PORT) {
