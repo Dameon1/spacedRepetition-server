@@ -2,14 +2,15 @@
 
 const express = require('express');
 const router = express.Router();
-const User = require('./model');
+const Users = require('./model');
 
 
 router.get('/', (req, res, next) => {
-  User
+  Users
     .find()
     .then(results => {
-      res.json('working');
+      console.log(results);
+      res.json(results);
     })
     .catch(err => {
       next(err);
