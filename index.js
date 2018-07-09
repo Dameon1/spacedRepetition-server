@@ -5,17 +5,15 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
-
-const { router: userRouter } = require('./users/route');
-
-const {router: usersRouter} = require('./auth/users');
-const {router: passportRouter} = require('./auth/passport');
-const jwtStrategy = require('./auth/jwtStrategy');
-
-
-
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
+
+const { router: userRouter } = require('./users/route');
+const {router: usersRouter} = require('./auth/users');
+const {router: passportRouter} = require('./auth/passport');
+
+const jwtStrategy = require('./auth/jwtStrategy');
+
 const app = express();
 
 passport.use(jwtStrategy);
@@ -53,6 +51,5 @@ if (require.main === module) {
       console.log(`Server runing on ${PORT}`);
     });
 }
-
 
 module.exports = { app };
