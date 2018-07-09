@@ -14,10 +14,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  email: {
-    type: String,
-    required: true
-  },
+ 
   questionsCorrect: {
     type: Number
   }
@@ -33,13 +30,13 @@ UserSchema.set('toObject', {
   }
 });
 
-// UserSchema.methods.validatePassword = function (password) {
-//   return bcrypt.compare(password, this.password);
-// };
+UserSchema.methods.validatePassword = function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
-// UserSchema.statics.hashPassword = function (password) {
-//   return bcrypt.hash(password, 10);
-// };
+UserSchema.statics.hashPassword = function (password) {
+  return bcrypt.hash(password, 10);
+};
 
 const Users = mongoose.model('Users', UserSchema);
 module.exports = Users ;
