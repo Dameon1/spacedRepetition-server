@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-
+const { router: userRouter } = require('./users/router');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const app = express();
@@ -20,6 +20,22 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+
+app.use('/', userRouter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function runServer(port = PORT) {
   const server = app
