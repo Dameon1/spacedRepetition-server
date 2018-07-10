@@ -14,9 +14,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   }, 
-  questionsCorrect: {
-    type: Number
-  }
+  questions: mongoose.Schema.Types.Mixed,
+  head: {
+    questionId: { type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Questions', required: true }
+  },
+  currentScore: Number
 });
 
 UserSchema.set('toObject', {
