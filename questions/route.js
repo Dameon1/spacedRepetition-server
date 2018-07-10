@@ -7,13 +7,18 @@ const Question = require('./model');
 router.get('/', (req, res, next) => {
   
   Question
-    .find()
+    .findOne()
     .then(results => {      
       res.json(results);
     })
     .catch(err => {
       next(err);
     });
+});
+
+router.post('/', (req, res, next) => {
+  let { grade } = req.body;
+  res.status(204).end(); 
 });
 
 

@@ -29,13 +29,12 @@ router.post('/', (req, res, next) => {
   const { response  } = req.body;
   const userId = req.user.id;
   if(response==='true'){
-    Users
-      .findByIdAndUpdate({ _id:userId },{ head:next })
-      .then(results => res.status(201).json(results)) 
+    res.json('true')
       .catch(err => {
         next(err);
       });
   }
+  else next();
   //reposition question / update link-list
   //update score if correct
 });
