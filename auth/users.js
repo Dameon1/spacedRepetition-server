@@ -144,7 +144,7 @@ router.post('/', (req, res) => {
         questions :  questions.map((question,index)=>({
           question: question.question,
           answer: question.answer,
-          memoryStrength: 1,
+          memoryValue: index+1,
           next: index === question.length-1? null : index+1})),
       });
     })  
