@@ -9,12 +9,6 @@ const QuestionSchema = mongoose.Schema({
   answer:{
     type: String
   },
-  memeoryValue:{
-    type: Number
-  },
-  position:{
-    type: String
-  }
 });
 
 const Question = mongoose.model('Questions', QuestionSchema);

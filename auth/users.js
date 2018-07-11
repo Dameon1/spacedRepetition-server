@@ -4,6 +4,9 @@ const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const  Users  = require('../users/model');
 const router = express.Router();
+const Question = require('../questions/model');
+let questions;
+Question.find().then(results => questions = results);
 
 router.use(express.json());
 
@@ -138,12 +141,16 @@ router.post('/', (req, res) => {
       return Users.create({
         username,
         password: digest,
-        
+        questions :  questions.map((question,index)=>({
+          question: question.question,
+          answer: question.answer,
+          memoryValue: index+1,
+          next: index === question.length-1? null : index+1})),
       });
-    })
+    })  
     .then(user => {
       return res.status(201).location(`/api/users/${user.id}`).json(user);
-    })
+    }) 
     .catch(err => {
      
       if (err.reason === 'ValidationError') {
