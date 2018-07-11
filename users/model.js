@@ -15,11 +15,19 @@ const UserSchema = new mongoose.Schema({
     required: true
   }, 
   questions: mongoose.Schema.Types.Mixed,
+
   head: {
-    questionId: { type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Questions', required: true }
+    type : Number,
+    default: 0
+    // questionId: { 
+    //   type: mongoose.Schema.Types.ObjectId, 
+    //   question: String,
+    //   answer: String,
+    //   memoryStrength: Number,
+    //   next: Number
+    // ref: 'Questions', required: true }
   },
-  currentScore: Number
+  
 });
 
 UserSchema.set('toObject', {
