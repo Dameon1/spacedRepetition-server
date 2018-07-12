@@ -9,20 +9,31 @@ const passport = require('passport');
 let cl = (x,y) => {console.log(x,y);};
 
 let helperFunction = (user,answeredQuestion) => {
+
+
   let currentQuestion = answeredQuestion;
   let nextIndex= currentQuestion.next;
   user.head = answeredQuestion.next;
-  cl(currentQuestion.memoryValue,user.questions[nextIndex].memoryValue );
-  while(currentQuestion.memoryValue > user.questions[nextIndex].memoryValue && currentQuestion) {
-    if(nextIndex===null) break;
+  
+  for(let i = 0; i < answeredQuestion.memoryValue; i++){
+    if(currentQuestion === undefined) break;
     currentQuestion = user.questions[nextIndex];
     nextIndex = currentQuestion.next;
   }
+   answeredQuestion.next =currentQuestion.next;
+   currentQuestion.next = user.questions.indexOf(answeredQuestion);
+   return user;
+  //                           //44                                     //3
+  //   while(currentQuestion.memoryValue > user.questions[nextIndex].memoryValue && currentQuestion) {
+  //     if(nextIndex===null) break;
+  //     currentQuestion = user.questions[nextIndex];
+  //     nextIndex = currentQuestion.next;
+  //   }
   
-  answeredQuestion.next = currentQuestion.next;
-  currentQuestion.next = user.questions.indexOf(answeredQuestion);
-  console.log(user.questions.indexOf(answeredQuestion));
-  return user;
+  // answeredQuestion.next = currentQuestion.next;
+  // 
+  // console.log(user.questions.indexOf(answeredQuestion));
+  // return user;
 };
 
 router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
@@ -70,8 +81,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { userResponse } = req.body;
-  console.log('HEADERS:',req.headers);
-  console.log(req.body);
   const userId = req.user.id;
   Users
     .findById({_id:userId})
@@ -79,7 +88,7 @@ router.post('/', (req, res, next) => {
       const currentQuestionIndex = user.head;
       const currentQuestion = user.questions[currentQuestionIndex];
       if (userResponse.toLowerCase() === currentQuestion.answer.toLowerCase()){
-        user.questions[currentQuestionIndex].memoryValue = (user.questions[currentQuestionIndex].memoryValue*2)+1;
+        currentQuestion.memoryValue = (currentQuestion.memoryValue*2)+1;
         helperFunction(user, currentQuestion);
         user.markModified('questions');
         res.status(204).end();
