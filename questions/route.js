@@ -70,6 +70,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { response } = req.body;
+  console.log(response);
   const userId = req.user.id;
   Users
     .findById({_id:userId})
@@ -92,9 +93,9 @@ router.post('/', (req, res, next) => {
         .then((updatedUser) => {
           //updatedUser.head = currentQuestion.next;
           return updatedUser.save();
-        })
-        .catch(next);
-    });
+        });
+        
+    }).catch(next);
 });
 
 
