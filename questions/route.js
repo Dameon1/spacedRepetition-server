@@ -70,7 +70,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { userResponse } = req.body;
-  console.log(userResponse);
+  console.log(req);
   const userId = req.user.id;
   Users
     .findById({_id:userId})
