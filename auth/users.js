@@ -145,7 +145,7 @@ router.post('/', (req, res) => {
           question: question.question,
           answer: question.answer,
           memoryValue: 1,
-          next: index === question.length-1? null : index+1})),
+          next: index === questions.length-1 ? null : index+1})),
       });
     })  
     .then(user => {

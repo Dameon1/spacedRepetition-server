@@ -16,7 +16,7 @@ let helperFunction = (user,answeredQuestion) => {
   user.head = answeredQuestion.next;
   
   for(let i = 0; i < answeredQuestion.memoryValue; i++){
-    if(currentQuestion === undefined) break;
+    if(currentQuestion.next === null) break;
     currentQuestion = user.questions[nextIndex];
     nextIndex = currentQuestion.next;
   }
