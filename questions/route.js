@@ -94,6 +94,7 @@ router.post('/', (req, res, next) => {
         res.status(204).end();
       }
       else {
+        helperFunction(user,currentQuestion);
         res.json(currentQuestion.answer);
       }
       user.save()
