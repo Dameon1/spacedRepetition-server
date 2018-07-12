@@ -2,15 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const Question = require('./model');
 const Users = require('../users/model');
 const passport = require('passport');
 
-let cl = (x,y) => {console.log(x,y);};
-
 let helperFunction = (user,answeredQuestion) => {
-
-
   let currentQuestion = answeredQuestion;
   let nextIndex= currentQuestion.next;
   user.head = answeredQuestion.next;
@@ -20,15 +15,10 @@ let helperFunction = (user,answeredQuestion) => {
     currentQuestion = user.questions[nextIndex];
     nextIndex = currentQuestion.next;
   }
-   answeredQuestion.next =currentQuestion.next;
-   currentQuestion.next = user.questions.indexOf(answeredQuestion);
-   return user;
+  answeredQuestion.next =currentQuestion.next;
+  currentQuestion.next = user.questions.indexOf(answeredQuestion);
+  return user;
  
-  
-  // answeredQuestion.next = currentQuestion.next;
-  // 
-  // console.log(user.questions.indexOf(answeredQuestion));
-  // return user;
 };
 
 router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
@@ -63,26 +53,11 @@ router.post('/', (req, res, next) => {
         res.json(currentQuestion.answer);
       }
       user.save()
-        // .then((updatedUser) => {
-        //   return helperFunction(updatedUser, currentQuestion);
-        // })
         .then((updatedUser) => {
-          //updatedUser.head = currentQuestion.next;
           return updatedUser.save();
-        });
-        
-    }).catch(next);
+        });        
+    })
+    .catch(next);
 });
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = { router };
