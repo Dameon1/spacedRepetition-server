@@ -70,7 +70,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { userResponse } = req.body;
-  console.log("HEADERS:",req.headers);
+  console.log('HEADERS:',req.headers);
   console.log(req.body);
   const userId = req.user.id;
   Users
@@ -79,7 +79,7 @@ router.post('/', (req, res, next) => {
       const currentQuestionIndex = user.head;
       const currentQuestion = user.questions[currentQuestionIndex];
       if (userResponse.toLowerCase() === currentQuestion.answer.toLowerCase()){
-        user.questions[currentQuestionIndex].memoryValue *= 2;
+        user.questions[currentQuestionIndex].memoryValue = (user.questions[currentQuestionIndex].memoryValue*2)+1;
         helperFunction(user, currentQuestion);
         user.markModified('questions');
         res.status(204).end();
