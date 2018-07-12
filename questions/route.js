@@ -69,15 +69,15 @@ router.get('/', (req, res, next) => {
 // });
 
 router.post('/', (req, res, next) => {
-  const { response } = req.body;
-  console.log(response);
+  const { userResponse } = req.body;
+  console.log(userResponse);
   const userId = req.user.id;
   Users
     .findById({_id:userId})
     .then(user => {
       const currentQuestionIndex = user.head;
       const currentQuestion = user.questions[currentQuestionIndex];
-      if (response.toLowerCase() === currentQuestion.answer.toLowerCase()){
+      if (userResponse.toLowerCase() === currentQuestion.answer.toLowerCase()){
         user.questions[currentQuestionIndex].memoryValue *= 2;
         helperFunction(user, currentQuestion);
         user.markModified('questions');
