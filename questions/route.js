@@ -23,12 +23,7 @@ let helperFunction = (user,answeredQuestion) => {
    answeredQuestion.next =currentQuestion.next;
    currentQuestion.next = user.questions.indexOf(answeredQuestion);
    return user;
-  //                           //44                                     //3
-  //   while(currentQuestion.memoryValue > user.questions[nextIndex].memoryValue && currentQuestion) {
-  //     if(nextIndex===null) break;
-  //     currentQuestion = user.questions[nextIndex];
-  //     nextIndex = currentQuestion.next;
-  //   }
+ 
   
   // answeredQuestion.next = currentQuestion.next;
   // 
@@ -48,37 +43,6 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// router.post('/', (req, res, next) => {
-//   const { response  } = req.body;
-//   const userId = req.user.id;
-  
-//   Users
-//     .findById({_id:userId})
-//     .then(user => {
-      
-//       const answeredQuestionIndex = user.head;
-//       const answeredQuestion = user.questions[answeredQuestionIndex];
-//       if (response.toLowerCase() === answeredQuestion.answer.toLowerCase()){
-//         user.questions[answeredQuestionIndex].memoryValue *= 2;
-//         user.markModified('questions');
-//         res.status(204).end();
-//       } 
-//       else {       
-//         res.json(answeredQuestion.answer);
-//       }
-//       user.save()
-//         .then((updatedUser) =>  {
-//           console.log(updatedUser);
-//           return helperFunction(updatedUser, answeredQuestion);
-//         })
-//         .then((updatedUser) => {
-//           updatedUser.head = answeredQuestion.next; 
-//           return updatedUser.save();
-//         })
-//         .catch(next);
-//     });
-// });
-
 router.post('/', (req, res, next) => {
   const { userResponse } = req.body;
   const userId = req.user.id;
@@ -95,6 +59,7 @@ router.post('/', (req, res, next) => {
       }
       else {
         helperFunction(user,currentQuestion);
+        user.markModified('questions');
         res.json(currentQuestion.answer);
       }
       user.save()
