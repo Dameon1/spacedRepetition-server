@@ -17,8 +17,7 @@ let helperFunction = (user,answeredQuestion) => {
   }
   answeredQuestion.next =currentQuestion.next;
   currentQuestion.next = user.questions.indexOf(answeredQuestion);
-  return user;
- 
+  return user; 
 };
 
 router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
