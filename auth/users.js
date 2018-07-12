@@ -162,7 +162,7 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   return Users.findById(req.params.id)
     .then(user => res.json(user.apiRepr()))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
+    .catch( () => res.status(500).json({message: 'Internal server error'}));
 });
 
 module.exports = { router };
