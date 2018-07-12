@@ -151,8 +151,7 @@ router.post('/', (req, res) => {
     .then(user => {
       return res.status(201).location(`/api/users/${user.id}`).json(user);
     }) 
-    .catch(err => {
-     
+    .catch(err => {     
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }

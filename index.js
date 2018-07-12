@@ -7,14 +7,10 @@ const morgan = require('morgan');
 const passport = require('passport');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-
-
 const { router: usersRouter } = require('./auth/users');
 const { router: passportRouter } = require('./auth/passport');
-const { router: userRouter } = require('./users/route');
 const { router: questionRouter } = require('./questions/route');
 const jwtStrategy = require('./auth/jwtStrategy');
-
 const app = express();
 
 passport.use(jwtStrategy);
