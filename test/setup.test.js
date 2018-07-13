@@ -96,8 +96,6 @@ describe.only('Spanish Flash - Login', function () {
         .then(res => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('string');
-          console.log(res);
-          //expect(res.body).to.be.empty;
         });
     });
   });
