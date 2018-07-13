@@ -2,13 +2,13 @@
 
 ## Application details
 
--Spanish Flash is an spaced repetition learning application to learn the Spanish language.
--Create an account to keep track of your progress.
--User will be prompted with a word to translate into English.
--A text input field is given to the user to be able to input their answer.
--If the answer is correct than the user will be displayed a "correct" response.
--If the answer is incorrect than the user will be given the correct answer as a response.
--As the learning process and the application progresses along, the questions will be displayed in an order that
+- Spanish Flash is an spaced repetition learning application to learn the Spanish language.
+- Create an account to keep track of your progress.
+- User will be prompted with a word to translate into English.
+- A text input field is given to the user to be able to input their answer.
+- If the answer is correct than the user will be displayed a "correct" response.
+- If the answer is incorrect than the user will be given the correct answer as a response.
+- As the learning process and the application progresses along, the questions will be displayed in an order that
   conforms to the space repetition learning, where correctly answered questions will not be displayed as often as the incorrectly answered questions.
 
 ## Where to find
@@ -17,17 +17,17 @@ You can visit [https://forgiv.github.io/spacedRepetition-client/](https://forgiv
 
 ## Instructions
 
--Clone this repository to local directory.
--Do an 'npm install' to install the dependencies needed to run this server.
--Create a Mongo database and have a URL to connect to.
--Create a '.env' file in your local directory and create a 'JWT_SECRET' variable withe your secret word, and a      'DATABASE_URL' varible to put your database URL location in.
+- Clone this repository to local directory.
+- Do an 'npm install' to install the dependencies needed to run this server.
+- Create a Mongo database and have a URL to connect to.
+- Create a '.env' file in your local directory and create a 'JWT_SECRET' variable withe your secret word, and a      'DATABASE_URL' varible to put your database URL location in.
 
 ## Coding styles
 
--Node.js was used in conjuction with Express.js to implement the server side code.
--Mongo and Mongoose was used for the database structuring and access.
--React was used for the components to display the various forms of information.
--React-Redux was used for the management of the state.
+- Node.js was used in conjuction with Express.js to implement the server side code.
+- Mongo and Mongoose was used for the database structuring and access.
+- React was used for the components to display the various forms of information.
+- React-Redux was used for the management of the state.
 
 
 ## Contributions
