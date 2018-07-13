@@ -1,5 +1,9 @@
 # Spanish Flash
 
+This is the Server side code for the application.
+Looking for the client source? That's [Here!](https://github.com/forgiv/spacedRepetition-client)
+
+
 ## Application details
 
 - Spanish Flash is an spaced repetition learning application to learn the Spanish language.
