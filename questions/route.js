@@ -28,7 +28,11 @@ router.get('/', (req, res, next) => {
   Users
     .findById({_id:userId})
     .then(results => {
-      return res.location('/api/question').status(200).json(results.questions[results.head].question);
+      return res.json({
+        question: results.questions[results.head].question,
+        right: results.userScore,
+        wrong: results.userWrong
+      });
     })
     .catch(next);
 });
@@ -43,20 +47,22 @@ router.post('/', (req, res, next) => {
       const currentQuestion = user.questions[currentQuestionIndex];
       if (userResponse.toLowerCase() === currentQuestion.answer.toLowerCase()){
         currentQuestion.memoryValue = (currentQuestion.memoryValue*2);
+        user.userScore = user.userScore + 1;
         helperFunction(user, currentQuestion);
         user.markModified('questions');
         res.status(204).end();
       }
       else {
         currentQuestion.memoryValue = 1;
+        user.userWrong = user.userWrong + 1;
         helperFunction(user,currentQuestion);
         user.markModified('questions');
-        res.status(200).json(currentQuestion.answer);
-      }
+        res.json(currentQuestion.answer);
+      }      
       user.save()
         .then((updatedUser) => {
           return updatedUser.save();
-        });        
+        }).catch(next);        
     })
     .catch(next);
 });

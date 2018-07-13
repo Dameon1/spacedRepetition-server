@@ -12,7 +12,7 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe.only('Spanish Flash - Login', function () {
+describe.only('Spanish Flash - Endpoints', function () {
   const username = 'testUser';
   const password = 'password';
   let token;
@@ -23,8 +23,11 @@ describe.only('Spanish Flash - Login', function () {
   
   beforeEach(function () {
     return User.hashPassword(password)
-      .then(digest => User.create({  username,
+      .then(digest => User.create({  
+        username,
         password: digest,
+        userScore: 0,
+        userWrong: 0,
         questions:  questions.map((question,index)=>({
           question: question.question,
           answer: question.answer,
@@ -55,8 +58,7 @@ describe.only('Spanish Flash - Login', function () {
         .set('Authorization', `Bearer ${token}`)
         .then(res => {
           expect(res).to.have.status(200);
-          expect(res.body).to.be.an('string');
-          //expect(res).to.have.location('/api/question');
+          expect(res.body).to.be.an('object');
         });
     });
   });
@@ -75,8 +77,6 @@ describe.only('Spanish Flash - Login', function () {
         })
         .then(res => {
           expect(res).to.have.status(204);
-          expect(res.body).to.be.an('object');
-          expect(res.body).to.be.empty;
         });
     });
   });

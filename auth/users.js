@@ -146,6 +146,8 @@ router.post('/', (req, res) => {
           answer: question.answer,
           memoryValue: 1,
           next: index === questions.length-1 ? null : index+1})),
+        userScore: 0,
+        userWrong: 0,
       });
     })  
     .then(user => {

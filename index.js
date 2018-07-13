@@ -1,5 +1,6 @@
 'use strict';
 
+//requirements
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -13,32 +14,31 @@ const { router: questionRouter } = require('./questions/route');
 const jwtStrategy = require('./auth/jwtStrategy');
 const app = express();
 
+//middleware
 passport.use(jwtStrategy);
-
 app.use(
-  morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
-    skip: () => process.env.NODE_ENV === 'test'
-  })
+  morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', { skip: () => process.env.NODE_ENV === 'test' })
 );
 app.use(express.json());
 app.use( cors({ origin: CLIENT_ORIGIN }));
 app.options('*', cors());
 
+//routes
 app.use('/api/users', usersRouter);
 app.use('/api/auth', passportRouter);
 app.use('/api/question', questionRouter);
 
+//server function
 function runServer(port = PORT) {
   const server = app
-    .listen(port, () => {
-      console.info(`App listening on port ${server.address().port}`);
-    })
-    .on('error', err => {
+    .listen(port, () => { console.info(`App listening on port ${server.address().port}`); })
+    .on('error', err => { 
       console.error('Express failed to start');
       console.error(err);
     });
 }
 
+//start server
 if (require.main === module) {
   dbConnect()
     .then(instance => {
