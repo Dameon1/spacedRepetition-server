@@ -50,6 +50,18 @@ describe.only('Spanish Flash - Endpoints', function () {
     return mongoose.disconnect();
   });
 
+  //testing that the server is running by sending a GET request
+  describe('Server running', function() {
+    it('Should return an 200', function () {
+      return chai.request(app)
+        .get('/api/question')        
+        .set('Authorization', `Bearer ${token}`)
+        .then((res) => {
+          expect(res).to.have.status(200);
+        });
+    });
+  });
+
   //testing that the GET endpoint works
   describe('GET endpoint validation', function() {
     it('Should return question', function () {
