@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-  
   username: {
     type: String,
     required: true,
@@ -15,19 +14,18 @@ const UserSchema = new mongoose.Schema({
     required: true
   }, 
   questions: mongoose.Schema.Types.Mixed,
-
   head: {
     type : Number,
     default: 0
-    // questionId: { 
-    //   type: mongoose.Schema.Types.ObjectId, 
-    //   question: String,
-    //   answer: String,
-    //   memoryStrength: Number,
-    //   next: Number
-    // ref: 'Questions', required: true }
   },
-  
+  userScore: {
+    type : Number,
+    default: 0
+  },
+  userWrong: {
+    type: Number,
+    default: 0
+  },
 });
 
 UserSchema.set('toObject', {
@@ -36,7 +34,6 @@ UserSchema.set('toObject', {
     delete ret._id;
     delete ret.__v;
     delete ret.password;
-   
   }
 });
 
@@ -49,5 +46,4 @@ UserSchema.statics.hashPassword = function (password) {
 };
 
 const Users = mongoose.model('Users', UserSchema);
-module.exports = Users ;
- 
+module.exports = Users ; 
