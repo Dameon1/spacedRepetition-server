@@ -83,7 +83,7 @@ describe.only('Spanish Flash - Login', function () {
 
   //testing that the POST endpoint works with a incorrect answer
   describe('POST endpoint validation', function() {
-    it('Should return an answer or 204', function () {
+    it('Should return an 200', function () {
       return chai.request(app)
         .get('/api/question')        
         .set('Authorization', `Bearer ${token}`)
