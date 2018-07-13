@@ -17,7 +17,7 @@ passport.use(jwtStrategy);
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
-    skip: (req, res) => process.env.NODE_ENV === 'test'
+    skip: () => process.env.NODE_ENV === 'test'
   })
 );
 app.use(express.json());
@@ -26,8 +26,6 @@ app.options('*', cors());
 
 app.use('/api/users', usersRouter);
 app.use('/api/auth', passportRouter);
-//app.use('/api/user', userRouter);
-
 app.use('/api/question', questionRouter);
 
 function runServer(port = PORT) {

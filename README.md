@@ -17,6 +17,10 @@ You can visit [https://forgiv.github.io/spacedRepetition-client/](https://forgiv
 
 ## Instructions
 
+-Clone this repository to local directory.
+-Do an 'npm install' to install the dependencies needed to run this server.
+-Create a Mongo database and have a URL to connect to.
+-Create a '.env' file in your local directory and create a 'JWT_SECRET' variable withe your secret word, and a      'DATABASE_URL' varible to put your database URL location in.
 
 ## Coding styles
 
@@ -24,14 +28,6 @@ You can visit [https://forgiv.github.io/spacedRepetition-client/](https://forgiv
 -Mongo and Mongoose was used for the database structuring and access.
 -React was used for the components to display the various forms of information.
 -React-Redux was used for the management of the state.
-
-
-## Screenshots
-
-- Mobile screenshots on the left and right
-- On the left you will find what ????
-- On the right is ??
-- The middle picture is an overview of what the application looks like on a full sized screen
 
 
 ## Contributions
@@ -52,9 +48,11 @@ change and make a pull request.
 - [Mocha](https://mochajs.org/) - Framework used for testing the server code
 - [Chai.js](http://www.chaijs.com) - Assertion library used for the testing
 
-## Authors
+## Author
 
 - **Dameon Mendoza** - *Initial work* - [dameon1](https://github.com/dameon1)
+
+## Contributors
 
 - **Hiram Cruz** - *Initial work* - [forgiv](https://github.com/forgiv)
 
