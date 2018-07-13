@@ -19,10 +19,12 @@ const UserSchema = new mongoose.Schema({
     default: 0
   },
   userScore: {
-    type : Number
+    type : Number,
+    default: 0
   },
   userWrong: {
-    type: Number
+    type: Number,
+    default: 0
   },
 });
 
