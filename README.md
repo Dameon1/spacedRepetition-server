@@ -49,6 +49,8 @@ change and make a pull request.
 - [Node.js](https://nodejs.org/en) - Runtime enviorment for package management
 - [Express.js](https://expressjs.com) - Framework used for the application
 - [bcrypt.js](https://www.npmjs.com/package/bcryptjs) - For security of user accounts
+- [Mocha](https://mochajs.org/) - Framework used for testing the server code
+- [Chai.js](http://www.chaijs.com) - Assertion library used for the testing
 
 ## Authors
 
