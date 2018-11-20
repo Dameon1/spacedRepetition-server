@@ -34,6 +34,7 @@ describe.only('Spanish Flash - Endpoints', function () {
           memoryValue: 1,
           next: index === questions.length-1 ? null : index+1})),}))
       .then(user => {
+        console.log(user);
         token = jwt.sign({user}, JWT_SECRET, {
           subject: user.username,
           expiresIn: JWT_EXPIRY,
