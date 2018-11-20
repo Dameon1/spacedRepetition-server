@@ -18,7 +18,9 @@ describe.only('Spanish Flash - Endpoints', function () {
   let token;
   
   before(function () {
-    return mongoose.connect(TEST_DATABASE_URL);
+    return mongoose.connect(TEST_DATABASE_URL,
+      { useCreateIndex: true,
+        useNewUrlParser: true });
   });
   
   beforeEach(function () {
@@ -34,9 +36,10 @@ describe.only('Spanish Flash - Endpoints', function () {
           memoryValue: 1,
           next: index === questions.length-1 ? null : index+1})),}))
       .then(user => {
+        console.log(user);
         token = jwt.sign({user}, JWT_SECRET, {
           subject: user.username,
-          expiresIn: JWT_EXPIRY,
+          expiresIn: '7d',
           algorithm: 'HS256'
         });
       });
