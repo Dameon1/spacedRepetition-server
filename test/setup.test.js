@@ -18,7 +18,9 @@ describe.only('Spanish Flash - Endpoints', function () {
   let token;
   
   before(function () {
-    return mongoose.connect(TEST_DATABASE_URL,{ useNewUrlParser: true });
+    return mongoose.connect(TEST_DATABASE_URL,
+      { useCreateIndex: true,
+        useNewUrlParser: true });
   });
   
   beforeEach(function () {
