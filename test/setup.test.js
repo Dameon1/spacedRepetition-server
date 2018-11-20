@@ -1,5 +1,5 @@
 'use strict';
-//save for testing
+
 const { app } = require('../index');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -18,9 +18,7 @@ describe.only('Spanish Flash - Endpoints', function () {
   let token;
   
   before(function () {
-    return mongoose.connect(TEST_DATABASE_URL,
-      { useCreateIndex: true,
-        useNewUrlParser: true });
+    return mongoose.connect(TEST_DATABASE_URL);
   });
   
   beforeEach(function () {
@@ -36,10 +34,9 @@ describe.only('Spanish Flash - Endpoints', function () {
           memoryValue: 1,
           next: index === questions.length-1 ? null : index+1})),}))
       .then(user => {
-        console.log(user);
         token = jwt.sign({user}, JWT_SECRET, {
           subject: user.username,
-          expiresIn: '7d',
+          expiresIn: JWT_EXPIRY,
           algorithm: 'HS256'
         });
       });
