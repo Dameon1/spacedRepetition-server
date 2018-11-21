@@ -1,3 +1,6 @@
+
+[![CircleCI](https://circleci.com/gh/Dameon1/spacedRepition-server.svg?style=svg)](https://circleci.com/gh/Dameon1/spacedRepition-server)
+
 # Spanish Flash
 
 This is the Server side code for the application.
