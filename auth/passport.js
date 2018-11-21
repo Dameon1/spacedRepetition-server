@@ -16,7 +16,7 @@ const createAuthToken = (user) => {
     algorithm: 'HS256'
   });
 };
-      
+       
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user);
   return res.json({ authToken, user:req.user });
