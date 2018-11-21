@@ -12,13 +12,15 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe.only('Spanish Flash - Endpoints', function () {
+describe('Spanish Flash - Endpoints', function () {
   const username = 'testUser';
   const password = 'password';
   let token;
   
   before(function () {
-    return mongoose.connect(TEST_DATABASE_URL);
+    return mongoose.connect(TEST_DATABASE_URL,{
+      useNewUrlParser: true
+    });
   });
   
   beforeEach(function () {
@@ -57,6 +59,7 @@ describe.only('Spanish Flash - Endpoints', function () {
         .get('/api/question')        
         .set('Authorization', `Bearer ${token}`)
         .then((res) => {
+          //console.log(res);
           expect(res).to.have.status(200);
         });
     });

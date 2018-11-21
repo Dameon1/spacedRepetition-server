@@ -24,9 +24,10 @@ app.use( cors({ origin: CLIENT_ORIGIN }));
 app.options('*', cors());
 
 //routes
+
+app.use('/api/question', questionRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', passportRouter);
-app.use('/api/question', questionRouter);
 
 //server function
 function runServer(port = PORT) {

@@ -24,7 +24,8 @@ let helperFunction = (user,answeredQuestion) => {
 router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
 
 router.get('/', (req, res, next) => {
-  const userId = req.user.id;
+  const userId = req.user._id;
+  console.log('route',userId);
   Users
     .findById({_id:userId})
     .then(results => {
@@ -39,7 +40,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { userResponse } = req.body;
-  const userId = req.user.id;
+  const userId = req.user._id;
   Users
     .findById({_id:userId})
     .then(user => {
