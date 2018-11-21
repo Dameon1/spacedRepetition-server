@@ -38,7 +38,7 @@ describe('Spanish Flash - Endpoints', function () {
       .then(user => {
         token = jwt.sign({user}, JWT_SECRET, {
           subject: user.username,
-          expiresIn: JWT_EXPIRY,
+          expiresIn: '7d',
           algorithm: 'HS256'
         });
       });
