@@ -1,10 +1,8 @@
-
-[![CircleCI](https://circleci.com/gh/Dameon1/spacedRepition-server.svg?style=svg)](https://circleci.com/gh/Dameon1/spacedRepition-server)
-
 # Spanish Flash
+[![CircleCI](https://circleci.com/gh/Dameon1/spacedRepetition-server.svg?style=svg)](https://circleci.com/gh/Dameon1/spacedRepetition-server)
 
 This is the Server side code for the application.
-Looking for the client source? That's [Here!](https://github.com/forgiv/spacedRepetition-client)
+Looking for the client source? That's [Here!](https://github.com/Dameon1/spacedRepetition-client)
 
 
 ## Application details
@@ -20,18 +18,18 @@ Looking for the client source? That's [Here!](https://github.com/forgiv/spacedRe
 
 ## Where to find
 
-You can visit [https://forgiv.github.io/spacedRepetition-client/](https://forgiv.github.io/spacedRepetition-client/)!
+You can visit [https://www.dameonmendoza.com/spacedRepetition-client/](https://www.dameonmendoza.com/spacedRepetition-client/)!
 
 ## Instructions
 
 - Clone this repository to local directory.
 - Do an 'npm install' to install the dependencies needed to run this server.
 - Create a Mongo database and have a URL to connect to.
-- Create a '.env' file in your local directory and create a 'JWT_SECRET' variable withe your secret word, and a      'DATABASE_URL' varible to put your database URL location in.
+- Create a '.env' file in your local directory and create a 'JWT_SECRET' variable withe your secret word, and a      'DATABASE_URL' variable to put your database URL location in.
 
 ## Coding styles
 
-- Node.js was used in conjuction with Express.js to implement the server side code.
+- Node.js was used in conjunction with Express.js to implement the server side code.
 - Mongo and Mongoose was used for the database structuring and access.
 - React was used for the components to display the various forms of information.
 - React-Redux was used for the management of the state.
@@ -39,8 +37,7 @@ You can visit [https://forgiv.github.io/spacedRepetition-client/](https://forgiv
 
 ## Contributions
 
-Contributions to the application are accepted. If you have a design suggestion, feel free to
-change and make a pull request.
+Contributions to the application are accepted. If you have a design suggestions, feel free to change and make a pull request.
 
 ## Built With
 
