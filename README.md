@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/Dameon1/spacedRepetition-server.svg?style=svg)](https://circleci.com/gh/Dameon1/spacedRepetition-server)
 
 This is the Server side code for the application.
-Looking for the client source? That's [Here!](https://github.com/Dameon1/spacedRepetition-client)
+Looking for the client source? That's [Here!](https://github.com/Dameon1/spacedRepetition-client/tree/master)
 
 
 ## Application details
