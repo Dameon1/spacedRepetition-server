@@ -1,33 +1,35 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Users = require('../users/model');
-const passport = require('passport');
+const Users = require("../users/model");
+const passport = require("passport");
 
-let helperFunction = (user,answeredQuestion) => {
+let helperFunction = (user, answeredQuestion) => {
   let currentQuestion = answeredQuestion;
-  let nextIndex= currentQuestion.next;
+  let nextIndex = currentQuestion.next;
   const answeredQuestionPosition = user.head;
   user.head = answeredQuestion.next;
-  
-  for(let i = 0; i < answeredQuestion.memoryValue; i++){
-    if(currentQuestion.next === null) break;
+
+  for (let i = 0; i < answeredQuestion.memoryValue; i++) {
+    if (currentQuestion.next === null) break;
     currentQuestion = user.questions[nextIndex];
     nextIndex = currentQuestion.next;
   }
   answeredQuestion.next = currentQuestion.next;
   currentQuestion.next = answeredQuestionPosition;
-  return user; 
+  return user;
 };
 
-router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
+router.use(
+  "/",
+  passport.authenticate("jwt", { session: false, failWithError: true })
+);
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   const userId = req.user._id;
-  console.log('route',userId);
-  Users
-    .findById({_id:userId})
+  console.log("route", userId);
+  Users.findById({ _id: userId })
     .then(results => {
       return res.json({
         question: results.questions[results.head].question,
@@ -38,32 +40,32 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/', (req, res, next) => {
+router.post("/", (req, res, next) => {
   const { userResponse } = req.body;
   const userId = req.user._id;
-  Users
-    .findById({_id:userId})
+  Users.findById({ _id: userId })
     .then(user => {
       const currentQuestionIndex = user.head;
       const currentQuestion = user.questions[currentQuestionIndex];
-      if (userResponse.toLowerCase() === currentQuestion.answer.toLowerCase()){
-        currentQuestion.memoryValue = (currentQuestion.memoryValue*2);
+      if (userResponse.toLowerCase() === currentQuestion.answer.toLowerCase()) {
+        currentQuestion.memoryValue = currentQuestion.memoryValue * 2;
         user.userScore = user.userScore + 1;
         helperFunction(user, currentQuestion);
-        user.markModified('questions');
+        user.markModified("questions");
         res.status(204).end();
-      }
-      else {
+      } else {
         currentQuestion.memoryValue = 1;
         user.userWrong = user.userWrong + 1;
-        helperFunction(user,currentQuestion);
-        user.markModified('questions');
+        helperFunction(user, currentQuestion);
+        user.markModified("questions");
         res.json(currentQuestion.answer);
-      }      
-      user.save()
-        .then((updatedUser) => {
+      }
+      user
+        .save()
+        .then(updatedUser => {
           return updatedUser.save();
-        }).catch(next);        
+        })
+        .catch(next);
     })
     .catch(next);
 });
